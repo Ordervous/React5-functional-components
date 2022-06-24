@@ -1,18 +1,17 @@
 import React from 'react';
+import ContactActions from './ContactActions'
+import ContactForm from './ContactForm'
+import ContactList from './ContactList'
+import Stack from 'react-bootstrap/Stack'
 
 function App() {
   return (
-    <div style={{ textAlign: 'center' }}>
-      <header>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Stack gap={3} className="col-md-10 mx-auto">
+      <ContactActions selectedContact={null} />
+      <ContactForm />
+      <ContactList contacts={[]} />
+    </Stack>
+  )
 }
 
-export default App;
+export default App
