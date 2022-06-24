@@ -1,25 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
 function ContactForm(props) {
-  return (
-    <Form>
-      <Form.Group className="mb-3" >
-        <Form.Label>Name</Form.Label>
-        <Form.Control type="text" name="name" />
-      </Form.Group>
-      <Form.Group className="mb-3" >
-        <Form.Label>Email</Form.Label>
-        <Form.Control type="email" name="email" />
-      </Form.Group>
-      <Form.Group className="mb-3" >
-        <Form.Label>Phone</Form.Label>
-        <Form.Control type="text" name="phone" />
-      </Form.Group>
-      <Button type="submit">Add Contact</Button>
-    </Form>
-  )
+    const [contact, setContact] = useState({ name: "", email: "", phone: ""})
+
+    function handleChange(event) {
+        setContact({ ...contact, [event.target.name]: event.target.value });
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault()
+        props.onNewContact(contact)
+    }
+
+    return (
+        <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3" >
+                <Form.Label>Name</Form.Label>
+                <Form.Control type="text" value={contact.name} onChange={handleChange} name="name" />
+            </Form.Group>
+            <Form.Group className="mb-3" >
+                <Form.Label>Email</Form.Label>
+                <Form.Control type="email" value={contact.email} onChange={handleChange} name="email" />
+            </Form.Group>
+            <Form.Group className="mb-3" >
+                <Form.Label>Phone</Form.Label>
+                <Form.Control type="text" value={contact.phone} onChange={handleChange} name="phone" />
+            </Form.Group>
+            <Button type="submit">Add Contact</Button>
+        </Form>
+    )
 }
 
 export default ContactForm
