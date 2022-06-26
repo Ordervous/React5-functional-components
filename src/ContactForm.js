@@ -3,7 +3,9 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
 function ContactForm(props) {
-    const [contact, setContact] = useState({ name: "", email: "", phone: ""})
+    const [contact, setContact] = useState({
+        name: "", email: "", phone: ""
+    })
 
     function handleChange(event) {
         setContact({ ...contact, [event.target.name]: event.target.value });
