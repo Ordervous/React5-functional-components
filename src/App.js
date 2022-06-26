@@ -1,23 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ContactActions from './ContactActions'
 import ContactForm from './ContactForm'
 import ContactList from './ContactList'
 import Stack from 'react-bootstrap/Stack'
+import usePersistence from './usePersistence'
 
 function App() {
-  const [contacts, setContacts] = useState(null)
-  const [selectedContact, setSelectedContact] = useState(null)
+  // const [contacts, setContacts] = useState(null)
+  const [contacts, setContacts] = usePersistence('contacts', [])
+  // const [selectedContact, setSelectedContact] = useState(null)
+  const [selectedContact, setSelectedContact] = usePersistence('selectedContact', null)
 
-  useEffect(() => {
-    if (contacts === null) {
-      setContacts(JSON.parse(localStorage.getItem("contacts") || "[]"))
-      setSelectedContact(localStorage.getItem("selectedContact"))
-    } else {
-      localStorage.setItem("contacts", JSON.stringify(contacts))
-      localStorage.setItem("selectedContact", selectedContact)
-    }
-    if (selectedContact === null) localStorage.removeItem("selectedContact")
-  }, [contacts, selectedContact])
+  // useEffect(() => {
+  //   if (contacts === null) {
+  //     setContacts(JSON.parse(localStorage.getItem("contacts") || "[]"))
+  //     setSelectedContact(localStorage.getItem("selectedContact"))
+  //   } else {
+  //     localStorage.setItem("contacts", JSON.stringify(contacts))
+  //     localStorage.setItem("selectedContact", selectedContact)
+  //   }
+  //   if (selectedContact === null) localStorage.removeItem("selectedContact")
+  // }, [contacts, selectedContact])
   
 
 
